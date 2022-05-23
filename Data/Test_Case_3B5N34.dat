@@ -1,0 +1,88 @@
+SheetConnection sheet("Test_Case_3B5N34.xlsb");
+
+ N from SheetRead(sheet,"'Data'!A2");
+ B from SheetRead(sheet,"'Data'!A5");
+ P = 18;
+ M from SheetRead(sheet,"'Data'!A11");
+
+ aux_input_1 from SheetRead(sheet,"'Data'!E1");
+ arrival_time from SheetRead(sheet,aux_input_1);
+
+ aux_input_2 from SheetRead(sheet,"'Data'!F1");
+ deadline_time from SheetRead(sheet,aux_input_2);
+
+ aux_output_1 from SheetRead(sheet,"'Result Aux'!B1");
+ Result_sched to SheetWrite(sheet,aux_output_1);
+
+ aux_output_2 from SheetRead(sheet,"'Result Aux'!J1");
+ T to SheetWrite(sheet,aux_output_2);
+
+ aux_output_3 from SheetRead(sheet,"'Result Aux'!K1");
+ t to SheetWrite(sheet,aux_output_3);
+
+ aux_output_4 from SheetRead(sheet,"'Result Aux'!L1");
+ Result_sim to SheetWrite(sheet,aux_output_4);
+
+ aux_output_5 from SheetRead(sheet,"'Result Aux'!M1");
+ Pattern_C to SheetWrite(sheet,aux_output_5);
+
+ opt_time to SheetWrite(sheet,"'Result'!E1");
+
+ z to SheetWrite(sheet,"'Result'!H1");
+ d to SheetWrite(sheet,"'Result'!J1");
+
+service_time = [ 
+ //Pattern 1 
+[[ 300.00 300.00 300.00 300.00 300.00 ] [ 300.00 300.00 300.00 300.00 300.00 ] [ 1.35 0.65 0.50 4.63 3.05 ] ] 
+
+ //Pattern 2 
+[[ 300.00 300.00 300.00 300.00 300.00 ] [ 4.06 1.94 1.49 13.89 9.14 ] [ 1.56 0.74 0.57 5.33 3.51 ] ] 
+
+ //Pattern 3 
+[[ 300.00 300.00 300.00 300.00 300.00 ] [ 3.11 1.49 1.15 10.66 7.01 ] [ 2.03 0.97 0.75 6.95 4.57 ] ] 
+
+ //Pattern 4 
+[[ 300.00 300.00 300.00 300.00 300.00 ] [ 2.03 0.97 0.75 6.95 4.57 ] [ 3.11 1.49 1.15 10.66 7.01 ] ] 
+
+ //Pattern 5 
+[[ 300.00 300.00 300.00 300.00 300.00 ] [ 1.56 0.74 0.57 5.33 3.51 ] [ 4.06 1.94 1.49 13.89 9.14 ] ] 
+
+ //Pattern 6 
+[[ 300.00 300.00 300.00 300.00 300.00 ] [ 1.35 0.65 0.50 4.63 3.05 ] [ 300.00 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 7 
+[[ 4.06 1.94 1.49 13.89 9.14 ] [ 300.00 300.00 300.00 300.00 300.00 ] [ 1.56 0.74 0.57 5.33 3.51 ] ] 
+
+ //Pattern 8 
+[[ 4.06 1.94 1.49 13.89 9.14 ] [ 4.06 1.94 1.49 13.89 9.14 ] [ 3.11 1.49 1.15 10.66 7.01 ] ] 
+
+ //Pattern 9 
+[[ 4.06 1.94 1.49 13.89 9.14 ] [ 3.11 1.49 1.15 10.66 7.01 ] [ 4.06 1.94 1.49 13.89 9.14 ] ] 
+
+ //Pattern 10 
+[[ 4.06 1.94 1.49 13.89 9.14 ] [ 1.56 0.74 0.57 5.33 3.51 ] [ 300.00 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 11 
+[[ 3.11 1.49 1.15 10.66 7.01 ] [ 300.00 300.00 300.00 300.00 300.00 ] [ 2.03 0.97 0.75 6.95 4.57 ] ] 
+
+ //Pattern 12 
+[[ 3.11 1.49 1.15 10.66 7.01 ] [ 4.06 1.94 1.49 13.89 9.14 ] [ 4.06 1.94 1.49 13.89 9.14 ] ] 
+
+ //Pattern 13 
+[[ 3.11 1.49 1.15 10.66 7.01 ] [ 2.03 0.97 0.75 6.95 4.57 ] [ 300.00 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 14 
+[[ 2.03 0.97 0.75 6.95 4.57 ] [ 300.00 300.00 300.00 300.00 300.00 ] [ 3.11 1.49 1.15 10.66 7.01 ] ] 
+
+ //Pattern 15 
+[[ 2.03 0.97 0.75 6.95 4.57 ] [ 3.11 1.49 1.15 10.66 7.01 ] [ 300.00 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 16 
+[[ 1.56 0.74 0.57 5.33 3.51 ] [ 300.00 300.00 300.00 300.00 300.00 ] [ 4.06 1.94 1.49 13.89 9.14 ] ] 
+
+ //Pattern 17 
+[[ 1.56 0.74 0.57 5.33 3.51 ] [ 4.06 1.94 1.49 13.89 9.14 ] [ 300.00 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 18 
+[[ 1.35 0.65 0.50 4.63 3.05 ] [ 300.00 300.00 300.00 300.00 300.00 ] [ 300.00 300.00 300.00 300.00 300.00 ] ] 
+];

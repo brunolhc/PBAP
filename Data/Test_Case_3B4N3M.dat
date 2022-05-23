@@ -1,0 +1,95 @@
+/*********************************************
+ * OPL 12.6.0.0 Machine and Berth Alocation Problem
+ Model and Algorithm created by Bruno Luís Hönigmann Cereser
+ * Creation Date: 24/09/2015 at 15:58:09
+ *********************************************/
+ 
+SheetConnection sheet("Test_Case_3B4N3M.xlsb");
+
+N from SheetRead(sheet,"'Data'!A2");
+B from SheetRead(sheet,"'Data'!A5");
+P from SheetRead(sheet,"'Data'!A8");
+M from SheetRead(sheet,"'Data'!A11");
+
+aux_input_1 from SheetRead(sheet,"'Data'!E1");
+arrival_time from SheetRead(sheet,aux_input_1);
+
+aux_input_2 from SheetRead(sheet,"'Data'!F1");
+deadline_time from SheetRead(sheet,aux_input_2);
+
+service_time = [ 
+ //Pattern 1 
+[[ 300.00 300.00 300.00 300.00 ] [ 300.00 300.00 300.00 300.00 ] [ 0.80 0.40 0.80 0.40 ] ] 
+
+ //Pattern 2 
+[[ 300.00 300.00 300.00 300.00 ] [ 2.22 1.11 2.22 1.11 ] [ 0.93 0.46 0.93 0.46 ] ] 
+
+ //Pattern 3 
+[[ 300.00 300.00 300.00 300.00 ] [ 1.85 0.93 1.85 0.93 ] [ 1.11 0.56 1.11 0.56 ] ] 
+
+ //Pattern 4 
+[[ 300.00 300.00 300.00 300.00 ] [ 1.11 0.56 1.11 0.56 ] [ 1.85 0.93 1.85 0.93 ] ] 
+
+ //Pattern 5 
+[[ 300.00 300.00 300.00 300.00 ] [ 0.93 0.46 0.93 0.46 ] [ 2.22 1.11 2.22 1.11 ] ] 
+
+ //Pattern 6 
+[[ 300.00 300.00 300.00 300.00 ] [ 0.80 0.40 0.80 0.40 ] [ 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 7 
+[[ 2.22 1.11 2.22 1.11 ] [ 300.00 300.00 300.00 300.00 ] [ 0.93 0.46 0.93 0.46 ] ] 
+
+ //Pattern 8 
+[[ 2.22 1.11 2.22 1.11 ] [ 2.22 1.11 2.22 1.11 ] [ 1.85 0.93 1.85 0.93 ] ] 
+
+ //Pattern 9 
+[[ 2.22 1.11 2.22 1.11 ] [ 1.85 0.93 1.85 0.93 ] [ 2.22 1.11 2.22 1.11 ] ] 
+
+ //Pattern 10 
+[[ 2.22 1.11 2.22 1.11 ] [ 0.93 0.46 0.93 0.46 ] [ 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 11 
+[[ 1.85 0.93 1.85 0.93 ] [ 300.00 300.00 300.00 300.00 ] [ 1.11 0.56 1.11 0.56 ] ] 
+
+ //Pattern 12 
+[[ 1.85 0.93 1.85 0.93 ] [ 2.22 1.11 2.22 1.11 ] [ 2.22 1.11 2.22 1.11 ] ] 
+
+ //Pattern 13 
+[[ 1.85 0.93 1.85 0.93 ] [ 1.11 0.56 1.11 0.56 ] [ 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 14 
+[[ 1.11 0.56 1.11 0.56 ] [ 300.00 300.00 300.00 300.00 ] [ 1.85 0.93 1.85 0.93 ] ] 
+
+ //Pattern 15 
+[[ 1.11 0.56 1.11 0.56 ] [ 1.85 0.93 1.85 0.93 ] [ 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 16 
+[[ 0.93 0.46 0.93 0.46 ] [ 300.00 300.00 300.00 300.00 ] [ 2.22 1.11 2.22 1.11 ] ] 
+
+ //Pattern 17 
+[[ 0.93 0.46 0.93 0.46 ] [ 2.22 1.11 2.22 1.11 ] [ 300.00 300.00 300.00 300.00 ] ] 
+
+ //Pattern 18 
+[[ 0.80 0.40 0.80 0.40 ] [ 300.00 300.00 300.00 300.00 ] [ 300.00 300.00 300.00 300.00 ] ] 
+]; 
+
+
+aux_output_1 from SheetRead(sheet,"'Result Aux'!B1");
+Result_sched to SheetWrite(sheet,aux_output_1);
+
+aux_output_2 from SheetRead(sheet,"'Result Aux'!J1");
+T to SheetWrite(sheet,aux_output_2);
+
+aux_output_3 from SheetRead(sheet,"'Result Aux'!K1");
+t to SheetWrite(sheet,aux_output_3);
+
+aux_output_4 from SheetRead(sheet,"'Result Aux'!L1");
+Result_sim to SheetWrite(sheet,aux_output_4);
+
+aux_output_5 from SheetRead(sheet,"'Result Aux'!M1");
+Pattern_C to SheetWrite(sheet,aux_output_5);
+
+opt_time to SheetWrite(sheet,"'Result'!E1");
+
+z to SheetWrite(sheet,"'Result'!H1");
+d to SheetWrite(sheet,"'Result'!J1");
